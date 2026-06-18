@@ -1,24 +1,23 @@
-import pandas as pd
 import os
+import pandas as pd
+def cargarDatos():
 
-# 1. Detectar automáticamente la ubicación de este script
-dir_actual = os.path.dirname(os.path.abspath(__file__))
+    # 1. Ruta absoluta del directorio donde está este archivo (src)
+    ruta_actual = os.path.dirname(os.path.abspath(__file__))
 
-# 2. Construir la ruta correcta hacia la carpeta 'data' subiendo un nivel
-# Esto busca en: M5INTEGRADOR/M5/data/Base_de_datos.xlsx
-ruta_data = os.path.join(dir_actual, '..', 'data', 'Base_de_datos.xlsx')
+    # 2. Subir un nivel para llegar a la carpeta donde está la base de datos
+    ruta_proyecto = os.path.dirname(ruta_actual)
+    
+    # 3. Construir la ruta completa al Excel
+    ruta_excel = os.path.join(ruta_proyecto, "Base_de_datos.xlsx")
 
-print(f"Buscando el archivo en: {ruta_data}")
+    # 4. leemos los datos y los imprimimos
+    df = pd.read_excel(ruta_excel)
+    print(df)
+    return df
 
-# 3. LEER EL EXCEL (Usando read_excel en lugar de read_csv)
-try:
-    df = pd.read_excel(ruta_data)
-    print("¡Lectura exitosa!")
-    print(f"Dimensiones del dataset: {df.shape}")
-    print(df.head())
-except FileNotFoundError:
-    print("\n❌ Error: El archivo no se encuentra en la carpeta 'data'.")
-    print("Asegúrate de que 'Base_de_datos.xlsx' esté guardado dentro de M5/data/")
-except Exception as e:
-    print(f"\n❌ Ocurrió otro error: {e}")
-    print("Tip: Si te pide 'openpyxl', ejecuta en la terminal: pip install openpyxl")
+if __name__ == "__main__":
+    # Si se ejecuta este script directamente, carga los datos y muestra las primeras filas
+    datos = cargarDatos()
+    print(datos.head())
+    print(datos.columns)
