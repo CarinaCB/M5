@@ -86,7 +86,6 @@ def ft_engineering(dataframe):
     separa features/target y aplica el ColumnTransformer correctamente.
     """
     # 1. Lista de columnas sospechosas que delatan el comportamiento futuro
-    # (¡Aunque no estén en tu print de arriba, asegúrate de quitarlas si vienen en df!)
     columnas_a_excluir = [
         'fecha_prestamo', 
         'saldo_mora', 

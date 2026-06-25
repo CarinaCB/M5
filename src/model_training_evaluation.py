@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Importamos la carga de datos y TU función de ingeniería de detalles
+# Importamos la carga de datos y función de ingeniería de detalles
 from cargar_datos import cargarDatos
 from ft_engineering import ft_engineering
 
@@ -34,7 +34,7 @@ def build_model(model_instance, X_train, y_train, X_test, y_test, model_name="Mo
     # 🚨 DETECTIVE DE DATA LEAKAGE: Revisamos qué variable se lleva todo el peso
     if model_name == "Arbol de Decision":
         importances = model_instance.feature_importances_
-        print("\n🚨 IMPORTANCIA DE VARIABLES (Las que pesen mucho son las tramposas):")
+        print("\n IMPORTANCIA DE VARIABLES (Las que pesen mucho son las tramposas):")
         for i, v in enumerate(importances):
             if v > 0.05:
                 print(f"-> Columna índice [{i}]: peso de {v:.4f}")
@@ -72,9 +72,9 @@ def ejecutar_entrenamiento():
     # 5. Crear e imprimir Tabla Resumen
     df_resumen = pd.DataFrame(tabla_resumen)
     
-    # === IMPRIMIR TABLA RESUMEN (Fuera del except para que corra siempre) ===
+    # === IMPRIMIR TABLA RESUMEN  ===
     print("\n" + "="*60)
-    print("📊 TABLA RESUMEN DE EVALUACIÓN DE MODELOS SUPERVISADOS")
+    print(" TABLA RESUMEN DE EVALUACIÓN DE MODELOS SUPERVISADOS")
     print("="*60)
     print(df_resumen.to_string(index=False))
     print("="*60)
@@ -89,8 +89,8 @@ def ejecutar_entrenamiento():
         plt.text(i, v + 0.02, f"{v:.2f}", ha='center', fontweight='bold')
         
     plt.savefig('src/comparativa_modelos.png')
-    print("\n📈 Gráfico comparativo guardado en 'src/comparativa_modelos.png'")
+    print("\n Gráfico comparativo guardado en 'src/comparativa_modelos.png'")
 
 if __name__ == "__main__":
-    print("🚀 Iniciando el proceso de modelado...")
+    print(" Iniciando el proceso de modelado...")
     ejecutar_entrenamiento()
